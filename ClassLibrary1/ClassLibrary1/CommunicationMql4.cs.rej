@@ -1,0 +1,9 @@
+diff a/ClassLibrary1/ClassLibrary1/CommunicationMql4.cs b/ClassLibrary1/ClassLibrary1/CommunicationMql4.cs	(rejected hunks)
+@@ -8,6 +8,7 @@
+ 
+ namespace MT4DLL
+ {
++    class CommunicationMql4 : SocketMessenger
+     {
+ 
+         const int CALL_FUNC = 1;
