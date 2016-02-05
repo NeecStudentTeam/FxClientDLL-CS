@@ -147,14 +147,21 @@ namespace MT4DLL
                 paramStrList = null;
             }
 
-            //送る
-            SendJson(callType, funcName, paramStrList == null ? null : paramStrList.ToArray());
+            //json
+            dynamic json;
 
-            //受け取る
-            dynamic json = ResvJson(callType+1);
+            //スレッドセーフ
+            lock (messenger)
+            {
+                //送る
+                SendJson(callType, funcName, paramStrList == null ? null : paramStrList.ToArray());
+
+                //受け取る
+                json = ResvJson(callType + 1);
+            }
 
             //エラー処理
-            if ((int)json["type"] != callType+1)
+            if ((int)json["type"] != callType + 1)
             {
                 throw new JsonTypeException();
             }
